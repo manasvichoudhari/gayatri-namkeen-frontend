@@ -24,7 +24,7 @@ import ResetPassword from "./pages/ResetPassword";
 
 
 // =========== admin ===========
-import AdminLogin from "./admin/Adminlogin";
+import AdminLogin from "./admin/AdminLogin";
 import Dashboard from "./admin/Dashboard";
 import Orders from "./admin/Orders";
 import Product from "./admin/Product";
