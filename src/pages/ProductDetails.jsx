@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useEffect,useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -42,12 +42,16 @@ const ProductDetails = () => {
     try {
 
       await API.post("/cart/add", {
-        userId: user._id,
-        productName: product.name,
-        price: getPrice(),
-        image: product.image,
+        productName: item.name,
+        price: item.price,
+        image: item.image,
         quantity: 1,
-        weight: weight
+        weight: "500g",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       });
       toast.success("Added To Cart 🛒");
     }

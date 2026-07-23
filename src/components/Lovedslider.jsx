@@ -19,7 +19,7 @@ const LovedSlider = () => {
 
   // ADD TO CART
   const handleAddCart = (item) => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user") || "null");
 
     if (!user) {
       navigate("/login");
@@ -31,7 +31,7 @@ const LovedSlider = () => {
 
   // ORDER NOW
   const handleOrderNow = (item) => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user") || "null");
 
     if (!user) {
       navigate("/login");

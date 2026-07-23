@@ -21,9 +21,9 @@ const Login = () => {
 
     try {
       setLoading(true);
-
+      console.log(import.meta.env.VITE_API_URL);
+      console.log(API.defaults.baseURL);
       const res = await API.post("/auth/login", formData);
-
       console.log("Login Response:", res.data);
 
       if (!res.data.success) {
@@ -34,22 +34,30 @@ const Login = () => {
       localStorage.setItem("token", res.data.token);
 
       const userData = {
-        _id: res.data._id,
-        name: res.data.name,
-        email: res.data.email,
-        phone: res.data.phone,
-        role: res.data.role || "user",
+        _id: res.data.user._id,
+        name: res.data.user.name,
+        email: res.data.user.email,
+        phone: res.data.user.phone,
+        role: res.data.user.role,
+        token: res.data.token,
       };
-
+      console.log("User Saved:", {
+        ...userData,
+        token: res.data.token,
+      });
       localStorage.setItem("user", JSON.stringify(userData));
+      console.log(
+        "After Save =",
+        JSON.parse(localStorage.getItem("user"))
+      );
 
       toast.success("Login Successful ✅");
 
-       if (userData.role === "admin") {
+      if (userData.role === "admin") {
         navigate("/admin/dashboard");
-            } else {
-              navigate("/profile");
-}
+      } else {
+        navigate("/profile");
+      }
     } catch (error) {
       console.log("Login Error:", error);
       console.log("Response:", error.response);

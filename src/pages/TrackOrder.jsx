@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import API from "../utils/api"; 
+import API from "../api";
 
 
 const TrackOrder = () => {
@@ -18,37 +18,80 @@ const TrackOrder = () => {
 
       try {
 
-        const user = JSON.parse(
+        const storedUser = JSON.parse(
           localStorage.getItem("user")
         );
 
 
-        if (!user?._id) {
+        // check user + token
+        if (
+          !storedUser ||
+          !storedUser.token
+        ) {
+
           navigate("/login");
           return;
+
+        }
+
+        console.log("USER DATA:", storedUser);
+        console.log("TOKEN:", storedUser.token);
+        const res = await API.get(
+          "/orders/my-orders",
+          {
+            headers: {
+              Authorization: `Bearer ${storedUser.token}`
+            }
+          }
+        );
+
+
+        console.log(
+          "Orders Response:",
+          res.data
+        );
+
+
+        // handle both response formats
+        if (Array.isArray(res.data)) {
+
+          setOrders(res.data);
+
+        }
+        else if (Array.isArray(res.data.orders)) {
+
+          setOrders(res.data.orders);
+
+        }
+        else {
+
+          setOrders([]);
+
         }
 
 
-        const res = await API.get(
-          `/orders/my-orders/${user._id}`
-        );
+      } catch (error) {
 
-
-        setOrders(
-          Array.isArray(res.data)
-          ? res.data
-          : []
-        );
-
-
-      } catch(error) {
 
         console.log(
           "Fetch Orders Error:",
-          error
+          error.response?.data || error.message
         );
 
+
+        // token expire/invalid
+        if (
+          error.response?.status === 401
+        ) {
+
+          localStorage.removeItem("user");
+          navigate("/login");
+
+        }
+
+
         setOrders([]);
+
 
       }
 
@@ -57,8 +100,8 @@ const TrackOrder = () => {
 
     getOrders();
 
-  }, [navigate]);
 
+  }, [navigate]);
 
 
 
@@ -82,11 +125,11 @@ const TrackOrder = () => {
   const getStep = (status) => {
 
     const statusSteps = {
-      PLACED:1,
-      CONFIRMED:2,
-      PACKED:3,
-      SHIPPED:4,
-      DELIVERED:5
+      PLACED: 1,
+      CONFIRMED: 2,
+      PACKED: 3,
+      SHIPPED: 4,
+      DELIVERED: 5
     };
 
 
@@ -99,7 +142,7 @@ const TrackOrder = () => {
 
 
 
-  const OrderCard = ({order}) => {
+  const OrderCard = ({ order }) => {
 
 
     const isExpanded =
@@ -113,8 +156,8 @@ const TrackOrder = () => {
 
     const items =
       Array.isArray(order?.items)
-      ? order.items
-      : [];
+        ? order.items
+        : [];
 
 
 
@@ -144,8 +187,8 @@ const TrackOrder = () => {
               Order #
               {
                 order?._id
-                ? order._id.slice(-6)
-                : "N/A"
+                  ? order._id.slice(-6)
+                  : "N/A"
               }
 
             </h2>
@@ -155,12 +198,12 @@ const TrackOrder = () => {
 
               {
                 order?.createdAt
-                ?
-                new Date(
-                  order.createdAt
-                ).toLocaleDateString()
-                :
-                "Date unavailable"
+                  ?
+                  new Date(
+                    order.createdAt
+                  ).toLocaleDateString()
+                  :
+                  "Date unavailable"
               }
 
             </p>
@@ -248,15 +291,15 @@ const TrackOrder = () => {
 
         <button
 
-        onClick={() =>
-          setExpandedOrder(
-            isExpanded
-            ? null
-            : order._id
-          )
-        }
+          onClick={() =>
+            setExpandedOrder(
+              isExpanded
+                ? null
+                : order._id
+            )
+          }
 
-        className="
+          className="
         mt-6 w-full
         bg-orange-100
         hover:bg-orange-200
@@ -268,10 +311,10 @@ const TrackOrder = () => {
 
           {
             isExpanded
-            ?
-            "▲ Hide Items"
-            :
-            `▼ View Items (${items.length})`
+              ?
+              "▲ Hide Items"
+              :
+              `▼ View Items (${items.length})`
           }
 
 
@@ -290,11 +333,11 @@ const TrackOrder = () => {
 
 
               {
-                items.map((item,index)=>(
+                items.map((item, index) => (
 
                   <div
-                  key={index}
-                  className="
+                    key={index}
+                    className="
                   flex gap-4
                   border rounded-xl
                   p-3
@@ -304,17 +347,17 @@ const TrackOrder = () => {
 
                     <img
 
-                    src={
-                      item?.image ||
-                      "/no-image.png"
-                    }
+                      src={
+                        item?.image ||
+                        "/no-image.png"
+                      }
 
-                    alt={
-                      item?.productName ||
-                      "Product"
-                    }
+                      alt={
+                        item?.productName ||
+                        "Product"
+                      }
 
-                    className="
+                      className="
                     w-24 h-24
                     rounded-xl
                     object-cover
@@ -379,66 +422,64 @@ const TrackOrder = () => {
           ">
 
 
-          {
-            [
-              "PLACED",
-              "CONFIRMED",
-              "PACKED",
-              "SHIPPED",
-              "DELIVERED"
-            ].map((status,index)=>(
+            {
+              [
+                "PLACED",
+                "CONFIRMED",
+                "PACKED",
+                "SHIPPED",
+                "DELIVERED"
+              ].map((status, index) => (
 
 
-              <React.Fragment key={status}>
+                <React.Fragment key={status}>
 
 
-                <div className="text-center">
+                  <div className="text-center">
 
-                  <div className={`
+                    <div className={`
                   w-5 h-5
                   rounded-full
                   mx-auto
-                  ${
-                    step >= index+1
-                    ?
-                    "bg-orange-500"
-                    :
-                    "bg-gray-300"
-                  }
+                  ${step >= index + 1
+                        ?
+                        "bg-orange-500"
+                        :
+                        "bg-gray-300"
+                      }
                   `}></div>
 
 
-                  <p className="text-xs mt-2">
-                    {status}
-                  </p>
+                    <p className="text-xs mt-2">
+                      {status}
+                    </p>
 
 
-                </div>
+                  </div>
 
 
 
-                {
-                  index < 4 &&
-                  <div
-                  className={`
+                  {
+                    index < 4 &&
+                    <div
+                      className={`
                   flex-1 h-1
-                  ${
-                    step > index+1
-                    ?
-                    "bg-orange-500"
-                    :
-                    "bg-gray-300"
-                  }
+                  ${step > index + 1
+                          ?
+                          "bg-orange-500"
+                          :
+                          "bg-gray-300"
+                        }
                   `}
-                  ></div>
-                }
+                    ></div>
+                  }
 
 
-              </React.Fragment>
+                </React.Fragment>
 
 
-            ))
-          }
+              ))
+            }
 
 
           </div>
@@ -549,9 +590,9 @@ const TrackOrder = () => {
         {
           orders.length === 0
 
-          ?
+            ?
 
-          <div className="
+            <div className="
           bg-white
           rounded-3xl
           shadow-lg
@@ -560,92 +601,92 @@ const TrackOrder = () => {
           ">
 
 
-            <h2 className="text-2xl font-bold">
-              No Orders Yet
-            </h2>
+              <h2 className="text-2xl font-bold">
+                No Orders Yet
+              </h2>
 
 
-            <p className="text-gray-500">
-              You haven't placed any order.
-            </p>
+              <p className="text-gray-500">
+                You haven't placed any order.
+              </p>
 
 
-          </div>
+            </div>
 
 
-          :
-
-          <>
-
-
-          {
-            activeOrders.length > 0 &&
+            :
 
             <>
 
-            <h2 className="
+
+              {
+                activeOrders.length > 0 &&
+
+                <>
+
+                  <h2 className="
             text-2xl
             font-bold
             text-orange-700
             mb-6
             ">
-              🔥 Active Orders
-            </h2>
+                    🔥 Active Orders
+                  </h2>
 
 
-            {
-              activeOrders.map(order=>(
+                  {
+                    activeOrders.map(order => (
 
-                <OrderCard
-                key={order._id}
-                order={order}
-                />
+                      <OrderCard
+                        key={order._id}
+                        order={order}
+                      />
 
-              ))
-            }
+                    ))
+                  }
 
-            </>
+                </>
 
-          }
-
-
+              }
 
 
 
-          {
-            completedOrders.length > 0 &&
 
-            <>
 
-            <h2 className="
+              {
+                completedOrders.length > 0 &&
+
+                <>
+
+                  <h2 className="
             text-2xl
             font-bold
             text-green-700
             mt-12 mb-6
             ">
-              ✅ Completed Orders
-            </h2>
+                    ✅ Completed Orders
+                  </h2>
 
 
-            {
-              completedOrders.map(order=>(
+                  {
+                    completedOrders.map(order => (
 
-                <OrderCard
-                key={order._id}
-                order={order}
-                />
+                      <OrderCard
+                        key={order._id}
+                        order={order}
+                      />
 
-              ))
-            }
+                    ))
+                  }
+
+
+                </>
+
+              }
+
 
 
             </>
-
-          }
-
-
-
-          </>
 
         }
 

@@ -12,28 +12,33 @@ const Home = () => {
 
   useEffect(() => {
     let isMounted = true;
-  
+
     const fetchOffer = async () => {
       try {
-        const res = await API.get("/offers/active");
-  
+        const res = await API.get("/offers");
+
+        console.log("Response:", res.data);
+
         if (isMounted && res.data.success) {
-          setOffer(res.data.offer);
+          const activeOffer = res.data.offers.find(
+            (o) => o.isActive === true
+          );
+
+          console.log("Active Offer:", activeOffer);
+
+          setOffer(activeOffer || null);
         }
       } catch (error) {
-        console.log(
-          "Offer fetch error:",
-          error.response?.data || error.message
-        );
+        console.log(error);
       } finally {
         if (isMounted) {
           setLoading(false);
         }
       }
     };
-  
+
     fetchOffer();
-  
+
     return () => {
       isMounted = false;
     };
@@ -41,7 +46,7 @@ const Home = () => {
   return (
     <div className="bg-[#fff7ed] overflow-hidden">
 
-      {/* 🔥 OFFER BANNER */}
+      {/*  OFFER BANNER */}
       {!loading && offer && (
         <div className="bg-gradient-to-r from-orange-500 to-red-500 text-white text-center py-3 px-4 font-semibold flex justify-center items-center gap-3">
 
@@ -51,7 +56,7 @@ const Home = () => {
 
         </div>
       )}
-
+    
       {/* Navbar */}
       <Navbar />
 

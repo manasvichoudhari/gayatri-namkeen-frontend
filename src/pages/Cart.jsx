@@ -12,25 +12,26 @@ const Cart = () => {
 
   const navigate = useNavigate();
 
-  let user = null;
+  const rawUser = localStorage.getItem("user");
 
-  try {
-    user = JSON.parse(localStorage.getItem("user"));
-  } catch (error) {
-    user = null;
-  }
+  console.log("RAW USER =", rawUser);
 
+  const user = rawUser ? JSON.parse(rawUser) : null;
+
+  console.log("USER =", user);
+  console.log("TOKEN =", user?.token);
 
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-
-    if (!user?._id) {
-
+    console.log("useEffect user =", user);
+    if (!user || !user.token) {
+      console.log("Redirecting to login...");
+      toast.error("Please login first");
       navigate("/login");
       return;
-
     }
+    console.log("FETCHING CART");
 
     fetchCart();
 
@@ -41,30 +42,22 @@ const Cart = () => {
 
       setLoading(true);
 
-
-      const res = await API.get(
-        `/cart/${user._id}`
-      );
-
-
-      setCartItems(
-        Array.isArray(res.data)
-          ? res.data
-          : []
-      );
+      const res = await API.get("/cart", {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
 
 
-    }
-    catch (error) {
-
-      console.log(
-        "Cart Error:",
-        error
-      );
-
-      toast.error("Unable to load cart");
+      setCartItems(res.data.items || []);
 
 
+    } catch (error) {
+      console.log("Cart Error:", error);
+      console.log("Status:", error.response?.status);
+      console.log("Response:", error.response?.data);
+    
+      toast.error(error.response?.data?.message || "Unable to load cart");
     }
     finally {
 
@@ -82,21 +75,24 @@ const Cart = () => {
 
     try {
 
-
       await API.put(
-        `/cart/increase/${id}`
+        `/cart/increase/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          }
+        }
       );
 
 
       fetchCart();
 
 
-    }
-    catch (error) {
-      console.log("Decrease Error:", error);
-      toast.error(
-        "Quantity update failed"
-      );
+    } catch (error) {
+
+      console.log(error);
+      toast.error("Quantity update failed");
 
     }
 
@@ -109,26 +105,28 @@ const Cart = () => {
 
     try {
 
-
       await API.put(
-        `/cart/decrease/${id}`
+        `/cart/decrease/${id}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          }
+        }
       );
 
 
       fetchCart();
 
 
-    }
-    catch (error) {
+    } catch (error) {
 
-      toast.error(
-        "Quantity update failed"
-      );
+      console.log(error);
+      toast.error("Quantity update failed");
 
     }
 
   };
-
 
 
 
@@ -138,22 +136,35 @@ const Cart = () => {
     try {
 
 
-      await API.delete(
-        `/cart/remove/${id}`
+      const res = await API.delete(
+        `/cart/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          }
+        }
       );
 
 
-      fetchCart();
-      console.log("Remove Error:", error);
-      toast.success("Item removed");
-    }
-    catch (error) {
 
-      toast.error(
-        "Remove failed"
-      );
+      if (res.data.success) {
+
+        toast.success(res.data.message);
+
+        fetchCart();
+
+      }
+
+
+
+    } catch (error) {
+
+      console.log(error);
+
+      toast.error("Remove failed");
 
     }
+
 
   };
   const subtotal = cartItems.reduce(
@@ -336,7 +347,7 @@ const Cart = () => {
                 </span>
 
               </div>
-              
+
               <hr className="my-3" />
               <div className="flex justify-between font-bold text-lg text-orange-600">
 
@@ -350,28 +361,39 @@ const Cart = () => {
                 </span>
 
 
-              </div><button
+              </div>
+              <button
+                onClick={() => {
 
-                onClick={() => navigate("/checkout")}
+                  const user = JSON.parse(localStorage.getItem("user"));
+
+                  if (!user || !user.token) {
+                    toast.error("Please login first");
+                    navigate("/login");
+                    return;
+                  }
+
+                  navigate("/checkout");
+                }}
 
                 disabled={cartItems.length === 0}
 
                 className={`w-full mt-6 py-3 rounded-full text-white ${cartItems.length === 0
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-orange-500 hover:bg-orange-600"
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-orange-500 hover:bg-orange-600"
                   }`}
 
               >
                 Checkout
 
               </button>
-               </div>
-               </div>
-               }
-               <Footer />
-               </div>
-               );
-              };
+            </div>
+          </div>
+      }
+      <Footer />
+    </div>
+  );
+};
 
 
 export default Cart;

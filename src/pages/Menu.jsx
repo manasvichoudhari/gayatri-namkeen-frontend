@@ -69,41 +69,47 @@ const Menu = () => {
 
   // Add To Cart
   const handleAddCart = async (item) => {
-    const userData = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    console.log("ADD CART USER:", user);
 
-    if (!userData) {
+
+    if ( !user.token) {
+      toast.error("please login first")
       navigate("/login");
       return;
     }
 
-    const user = JSON.parse(userData);
+
 
     try {
       const res = await API.post("/cart/add", {
-        userId: user._id,
         productName: item.name,
         price: item.price,
         image: item.image,
         quantity: 1,
         weight: "500g",
-      });
-
-      if (res.data.success) {
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
         toast.success("Added To Cart 🛒");
-      } else {
-        toast.error(res.data.message);
+      } catch (err) {
+        console.log(err.response?.data);
+        toast.error("Failed to add cart");
       }
-    } catch (error) {
-      console.log(error);
-      toast.error("Failed to add to cart");
-    }
-  };
+    };
+        
+
+    
 
   // Buy Now
   const handleBuyNow = (item) => {
-    const userData = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user") || "null");
 
-    if (!userData) {
+    if (!user.token) {
+      toast.error("Please login first");
       navigate("/login");
       return;
     }
