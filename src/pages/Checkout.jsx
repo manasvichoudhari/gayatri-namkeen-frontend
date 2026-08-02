@@ -49,6 +49,8 @@ const Checkout = () => {
   const [placingOrder, setPlacingOrder] = useState(false);
 
   const [paymentMethod, setPaymentMethod] = useState("COD");
+  const [shipping, setShipping] = useState(0);
+const [shippingMessage, setShippingMessage] = useState("");
 
 
 
@@ -194,51 +196,7 @@ const Checkout = () => {
 
 
   };
-
-
-
-
-
-  const getShipping = () => {
-
-
-    const city =
-      formData.city.toLowerCase();
-
-
-
-    if (city === "ujjain")
-      return 40;
-
-
-    if (city === "indore")
-      return 60;
-
-
-    if (city === "dewas")
-      return 50;
-
-
-    if (city === "bhopal")
-      return 100;
-
-
-    return 200;
-
-
-  };
-
-
-
-
-
-  const shipping = getShipping();
-
-
-
-
-
-  const subtotal = cartItems.reduce(
+const subtotal = cartItems.reduce(
 
     (total, item) =>
 
@@ -261,22 +219,54 @@ const Checkout = () => {
 
   const total = subtotal + shipping;
 
+  const checkShipping = async (pin) => {
 
+    if (pin.length !== 6) {
+      setShipping(0);
+      return;
+    }
+  
+    try {
+  
+      const res = await API.post("/shipping/calculate", {
+        pincode: pin,
+      });
+  
+      if (res.data.serviceable) {
+  
+        setShipping(res.data.deliveryCharge);
+        setShippingMessage("");
+  
+      } else {
+  
+        setShipping(0);
+        setShippingMessage(res.data.message);
+  
+      }
+  
+    } catch (error) {
+  
+      console.log(error);
+  
+    }
+  
+  };
 
 
 
   const handleChange = (e) => {
 
-
+    const { name, value } = e.target;
+  
     setFormData({
-
       ...formData,
-
-      [e.target.name]: e.target.value
-
+      [name]: value,
     });
-
-
+  
+    if (name === "pincode") {
+      checkShipping(value);
+    }
+  
   };
 
 
@@ -899,12 +889,6 @@ const Checkout = () => {
 
 
           </label>
-
-
-
-
-
-
           <label>
 
 
@@ -987,9 +971,6 @@ const Checkout = () => {
                   className="w-20 h-20 rounded-xl object-cover"
 
                 />
-
-
-
                 <div>
 
 
@@ -1066,6 +1047,11 @@ const Checkout = () => {
 
 
           </div>
+          {shippingMessage && (
+  <p className="text-red-500 text-sm mt-2">
+    {shippingMessage}
+  </p>
+)}
 
 
 
