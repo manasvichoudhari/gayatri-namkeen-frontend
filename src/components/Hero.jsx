@@ -28,13 +28,13 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-orange-50 via-white to-yellow-50">
+    <section className="relative  bg-gradient-to-r from-orange-50 via-white to-yellow-50">
 
       {/* Blur Background */}
 
-      <div className="absolute w-[500px] h-[500px] bg-orange-200 rounded-full blur-[150px] opacity-30 top-0 left-0"></div>
+      <div className="absolute pointer-events-none w-[500px] h-[500px] bg-orange-200 rounded-full blur-[150px] opacity-30 top-0 left-0"></div>
 
-      <div className="absolute w-[400px] h-[400px] bg-yellow-200 rounded-full blur-[120px] opacity-30 bottom-0 right-0"></div>
+      <div className="absolute pointer-events-none w-[400px] h-[400px] bg-yellow-200 rounded-full blur-[120px] opacity-30 bottom-0 right-0"></div>
 
       <div className="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
 
@@ -63,15 +63,21 @@ const Hero = () => {
           <div className="flex gap-5 mt-10">
 
             <button
-              onClick={() => navigate("/menu")}
+              onClick={() => {
+                alert("clicked");
+                navigate("/menu");
+              }}
               className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition"
             >
               Shop Now
             </button>
 
             <button
-              onClick={() => navigate("/about")}
-              className="border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-4 rounded-full font-semibold transition"
+              onClick={() => {
+                alert("clicked");
+                navigate("/about");
+              }}
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition"
             >
               Explore More
             </button>
@@ -84,7 +90,7 @@ const Hero = () => {
 
             <div>
               <h2 className="text-3xl font-bold text-orange-600">
-                50+
+                30+
               </h2>
               <p className="text-gray-500">
                 Products
