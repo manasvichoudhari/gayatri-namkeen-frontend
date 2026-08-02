@@ -64,8 +64,7 @@ const Hero = () => {
 
             <button
               onClick={() => {
-                alert("clicked");
-                navigate("/menu");
+              navigate("/menu");
               }}
               className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition"
             >
@@ -74,8 +73,7 @@ const Hero = () => {
 
             <button
               onClick={() => {
-                alert("clicked");
-                navigate("/about");
+               navigate("/about");
               }}
               className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-semibold shadow-lg transition"
             >
