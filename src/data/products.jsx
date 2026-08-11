@@ -1,5 +1,5 @@
 import ratlamiSev from "../assets/images/ratlami sev.png";
-import ujjainiSev from "../assets/images/ujjaini sev.png";
+import ujjainiSev from "../assets/images/Ujjaini sev.png";
 import singlelongSev from "../assets/images/single long sev.png";
 import DoubleLongSev from "../assets/images/double long sev.png";
 import Lahsahsev from "../assets/images/lehsun sev.png";
