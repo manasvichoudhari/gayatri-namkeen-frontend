@@ -183,7 +183,7 @@ const Footer = () => {
               onClick={() => navigate("/menu?item=Khatta Mitha Mixture")}
               className="hover:text-orange-400 transition cursor-pointer"
             >
-              Khatta Mitha Mix
+              Khatta Mitha Mixture
             </li>
           </ul>
 

@@ -1,3 +1,51 @@
+import ratlamiSev from "../assets/images/ratlami sev.png";
+import ujjainiSev from "../assets/images/ujjaini sev.png";
+import singlelongSev from "../assets/images/single long Sev.png";
+import DoubleLongSev from "../assets/images/double long sev.png";
+import Lahsahsev from "../assets/images/lehsun sev.png";
+// import hingSev from "../assets/images/ujjaini sev.png";
+import pohaSev from "../assets/images/poha.png";
+// import mediumSev from "../assets/images/ujjaini sev.png";
+import AlooBhujia from "../assets/images/alu bhujia.png";
+import MarwadiSev from "../assets/images/marwadi sev.png";
+import fikkiSev from "../assets/images/Fikki sev.png";
+import TejHingMixture from "../assets/images/Tej Hing Mixture.png";
+import KhattaMithaMixture from "../assets/images/Khatta Mitha Mixture.png";
+// import PohaChivda from "../assets/images/ujjaini sev.png";
+// import KashmiriMix from "../assets/images/ujjaini sev.png";
+// import CornSpicyMixture from "../assets/images/ujjaini sev.png";
+import DaalMothMixture from "../assets/images/daal mooth.png";
+// import LahsanDanthal from "../assets/images/ujjaini sev.png";
+// import MarwadiDanthal from "../assets/images/ujjaini sev.png";
+import PudinaDanthal from "../assets/images/Pudina Danthal.png";
+import StarGathiya from "../assets/images/star.png";
+import BhavnagriGathiya from "../assets/images/Bhavnagri Gathiya.png";
+import KaliMirchiFaliyari from "../assets/images/Kali Mirch Fariyal.png";
+import SabudanaFaliyari from "../assets/images/Sabudana Fariyali.png";
+// import LalMirchiSabudanaFalahari from "../assets/images/ujjaini sev.png";
+// import KaliMirchiDana from "../assets/images/ujjaini sev.png";
+// import LalMirchiDana from "../assets/images/ujjaini sev.png";
+// import SaltedDana from "../assets/images/Salted Peanut.png";
+// import LalMirchiDanaBold from "../assets/images/lal Mirch Peanut.png";
+import SaltedChips from "../assets/images/Salted Chips.png";
+// import KaliMirchiChips from "../assets/images/ujjaini sev.png";
+import KhattiMithiChips from "../assets/images/Khatti Meethi Chips.png";
+import LalMirchChips from "../assets/images/lal mirchi chips.png";
+import LalMirchiBoondi from "../assets/images/lal mirchi boondi.png";
+// import FikkiBoondi from "../assets/images/ujjaini sev.png";
+import TastyPeanut from "../assets/images/tasty.png";
+import KaliMirchiPeanut from "../assets/images/Kali Mirch Peanut.png";
+import LalMirchiPeanut from "../assets/images/lal Mirch Peanut.png";
+// import BoldLalMirchiPeanut from "../assets/images/ujjaini sev.png";
+import SaltedPeanut from "../assets/images/Salted Peanut.png";
+import HingChanaDal from "../assets/images/Hing Chana Dal.png";
+import MoongDal from "../assets/images/Moong Dal.png";
+import DaalMoth from "../assets/images/daal mooth.png";
+import PudinaChanaDal from "../assets/images/Pudhina Chana Dal.png";
+import MasalaPapdi from "../assets/images/Masala Papdi.png";
+import FikkiPapdi from "../assets/images/Fikki Papdi.png";
+
+
 export const products = [
   // ================= SEV =================
   {
@@ -5,7 +53,7 @@ export const products = [
     name: "Ujjaini Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image: ujjainiSev,
     shortDescription:
     "Authentic Ujjaini-style sev with a perfect balance of spice, aroma, and crispiness.",
     description:
@@ -19,7 +67,7 @@ export const products = [
     name: "Ratlami Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image:ratlamiSev ,
     shortDescription:
     "Extra-thin, spicy sev inspired by the famous Ratlami style.",
     description:
@@ -32,7 +80,7 @@ export const products = [
     name: "Single Long Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image: singlelongSev,
     shortDescription:
     "Thick single-strand sev with a crunchy texture and authentic traditional flavour.",
     description:
@@ -45,7 +93,7 @@ export const products = [
     name: "Double Long Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image:DoubleLongSev,
     shortDescription:
     "Extra-thick double-strand sev offering a hearty crunch in every bite.",
     description:
@@ -58,7 +106,7 @@ export const products = [
     name: "Lahsan Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image: Lahsahsev,
     shortDescription:
     "Crispy garlic-flavoured sev with bold spices and a rich aromatic taste.",
     description:
@@ -71,7 +119,7 @@ export const products = [
     name: "Hing Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    // image: hingSev,
     shortDescription:
     "Crispy sev infused with the rich aroma of hing for an authentic traditional taste.",
     description:
@@ -84,7 +132,7 @@ export const products = [
     name: "Poha Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image: pohaSev,
     shortDescription:
     "Crispy sev specially loved as a topping for poha and everyday snacks.",
     description:
@@ -97,7 +145,7 @@ export const products = [
     name: "Medium Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    // image: mediumSev,
     shortDescription:
     "Perfectly balanced medium-thick sev with a crispy texture and traditional flavour.",
     description:
@@ -110,7 +158,7 @@ export const products = [
     name: "Aloo Bhujia",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image:AlooBhujia,
     shortDescription:
     "Light and crispy potato bhujia with authentic Indian spices and a melt-in-the-mouth texture.",
     description:
@@ -123,7 +171,7 @@ export const products = [
     name: "Marwadi Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image: MarwadiSev,
     shortDescription:
     "Traditional Marwadi-style sev with aromatic spices and a rich, authentic taste.",
     description:
@@ -136,7 +184,7 @@ export const products = [
     name: "Fikki Sev",
     category: "Sev",
     price: 140,
-    image: "/products/default.jpg",
+    image:fikkiSev,
     shortDescription:
     "Light, crispy sev with a mild flavour, perfect for everyday snacking.",
     description:
@@ -151,7 +199,7 @@ export const products = [
     name: "Tej Hing Mixture",
     category: "Mixture",
     price: 140,
-    image: "/products/default.jpg",
+    image:TejHingMixture,
     shortDescription:
     "A crunchy mixture infused with the bold aroma and flavour of premium hing.",
     description:
@@ -164,7 +212,7 @@ export const products = [
     name: "Khatta Mitha Mixture",
     category: "Mixture",
     price: 140,
-    image: "/products/default.jpg",
+    image: KhattaMithaMixture,
     shortDescription:
     "A crunchy sweet and tangy mixture with the perfect balance of flavours.",
     description:
@@ -177,7 +225,7 @@ export const products = [
     name: "Poha Chivda",
     category: "Mixture",
     price: 140,
-    image: "/products/default.jpg",
+    // image: PohaChivda,
     shortDescription:
     "Light and crunchy poha chivda with a delicious blend of traditional flavours.",
     description:
@@ -191,7 +239,7 @@ export const products = [
     name: "Kashmiri Mix",
     category: "Mixture",
     price: 140,
-    image: "/products/default.jpg",
+    // image: KashmiriMix,
     shortDescription:
     "A crunchy and flavourful mixture inspired by rich Kashmiri-style seasoning.",
     description:
@@ -204,7 +252,7 @@ export const products = [
     name: "Corn Spicy Mixture",
     category: "Mixture",
     price: 140,
-    image: "/products/default.jpg",
+    // image: CornSpicyMixture,
     shortDescription:
     "Crunchy corn-based mixture packed with bold spices and irresistible flavour.",
     description:
@@ -217,7 +265,7 @@ export const products = [
     name: "Daal Moth Mixture",
     category: "Mixture",
     price: 140,
-    image: "/products/default.jpg",
+    image: DaalMothMixture,
     shortDescription:
     "A crunchy mixture of lentils and sev with rich traditional flavour.",
     description:
@@ -232,7 +280,7 @@ export const products = [
     name: "Lahsan Danthal",
     category: "Danthal",
     price: 140,
-    image: "/products/default.jpg",
+    // image: LahsanDanthal,
     shortDescription:
     "Crunchy danthal seasoned with rich garlic flavour and traditional spices.",
     
@@ -246,7 +294,7 @@ export const products = [
     name: "Marwadi Danthal",
     category: "Danthal",
     price: 140,
-    image: "/products/default.jpg",
+    // image:MarwadiDanthal,
     shortDescription:
     "Traditional Marwadi-style danthal with a bold, spicy, and crispy taste.",
     description:
@@ -260,7 +308,7 @@ export const products = [
     name: "Pudina Danthal",
     category: "Danthal",
     price: 140,
-    image: "/products/default.jpg",
+    image:PudinaDanthal,
     shortDescription:
     "Crunchy danthal seasoned with refreshing mint for a unique and flavourful snack.",
     description:
@@ -275,7 +323,7 @@ export const products = [
     name: "Star Gathiya",
     category: "Gathiya",
     price: 140,
-    image: "/products/default.jpg",
+    image: StarGathiya,
     shortDescription:
     "Gujarati-style thick and crunchy snack.",
 
@@ -290,7 +338,7 @@ export const products = [
     name: "Bhavnagri Gathiya",
     category: "Gathiya",
     price: 140,
-    image: "/products/default.jpg",
+    image: BhavnagriGathiya,
     shortDescription:
     "Authentic Bhavnagri Gathiya with a thick, crispy texture and mild traditional Gujarati flavour.",
     description:
@@ -306,7 +354,7 @@ export const products = [
     name: "Kali Mirchi Falahari",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    image: KaliMirchiFaliyari,
     shortDescription:
     "A crunchy farali snack made for fasting days with the bold taste of black pepper. ",
     description:
@@ -319,7 +367,7 @@ export const products = [
     name: "Sabudana Falahari",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    image:SabudanaFaliyari,
     shortDescription:
     "Light, crispy sabudana snack with a delicious sweet and tangy taste, specially made for fasting.",
     description:
@@ -332,7 +380,7 @@ export const products = [
     name: "Lal Mirchi Sabudana Falahari",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    // image: LalMirchiSabudanaFalahari,
     shortDescription:
     "Spicy and crispy sabudana snack with a bold red chilli flavour for fasting days.",
     description:
@@ -345,7 +393,7 @@ export const products = [
     name: "Kali Mirchi Dana",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    // image: KaliMirchiDana ,
     shortDescription:
     "Crunchy peanuts coated with black pepper for a bold and satisfying flavour.",
     description:
@@ -358,7 +406,7 @@ export const products = [
     name: "Lal Mirchi Dana",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    // image: LalMirchiDana,
     shortDescription:
     "Crunchy peanuts coated with bold red chilli and aromatic spices for a spicy snack experience.",
     description:
@@ -371,7 +419,7 @@ export const products = [
     name: "Salted Dana",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    // image: SaltedDana,
     shortDescription:
     "Classic roasted and salted peanuts with a simple, crunchy taste for everyday snacking.",
     description:
@@ -384,7 +432,7 @@ export const products = [
     name: "Lal Mirchi Dana Bold",
     category: "Falahari",
     price: 140,
-    image: "/products/default.jpg",
+    // image: LalMirchiDanaBold,
     shortDescription:
     "Extra-spicy peanuts coated with bold red chilli for an intense flavour.",
     description:
@@ -399,7 +447,7 @@ export const products = [
     name: "Salted Chips",
     category: "Chips",
     price: 140,
-    image: "/products/default.jpg",
+    image:SaltedChips,
     shortDescription:
     "Thin, crispy potato chips lightly seasoned with salt for a timeless snacking experience.",
     description:
@@ -412,7 +460,7 @@ export const products = [
     name: "Kali Mirchi Chips",
     category: "Chips",
     price: 140,
-    image: "/products/default.jpg",
+    // image: KaliMirchiChips,
     shortDescription:
     "Crispy potato chips coated with black pepper for a bold and flavourful crunch.",
     description:
@@ -425,7 +473,7 @@ export const products = [
     name: "Khatti Mithi Chips",
     category: "Chips",
     price: 140,
-    image: "/products/default.jpg",
+    image: KhattiMithiChips,
     shortDescription:
     "Crispy potato chips coated with a delicious sweet and tangy seasoning for a perfectly balanced flavour.",
     description:
@@ -438,7 +486,7 @@ export const products = [
     name: "Lal Mirch Chips",
     category: "Chips",
     price: 140,
-    image: "/products/default.jpg",
+    image: LalMirchChips,
     shortDescription:
     "Extra crispy potato chips seasoned with bold red chilli for a spicy and flavourful crunch.",
     description:
@@ -453,7 +501,7 @@ export const products = [
     name: "Lal Mirchi Boondi",
     category: "Boondi",
     price: 140,
-    image: "/products/default.jpg",
+    image: LalMirchiBoondi,
     shortDescription:
     "Crunchy gram flour boondi coated with bold red chilli seasoning for a spicy snack.",
     description:
@@ -466,7 +514,7 @@ export const products = [
     name: "Fikki Boondi",
     category: "Boondi",
     price: 140,
-    image: "/products/default.jpg",
+    // image: FikkiBoondi,
     shortDescription:
     "Light and crispy plain boondi with a mild salted taste for simple everyday snacking.",
     description:
@@ -481,7 +529,7 @@ export const products = [
     name: "Tasty Peanut",
     category: "Peanuts",
     price: 140,
-    image: "/products/default.jpg",
+    image: TastyPeanut,
     shortDescription:
     "Crunchy masala-coated peanuts packed with rich desi flavours and irresistible crispiness.",
     description:
@@ -494,7 +542,7 @@ export const products = [
     name: "Kali Mirchi Peanut",
     category: "Peanuts",
     price: 140,
-    image: "/products/default.jpg",
+    image: KaliMirchiPeanut,
     shortDescription:
     "Crunchy peanuts coated with black pepper for a bold and satisfying flavour.",
     description:
@@ -507,7 +555,7 @@ export const products = [
     name: "Lal Mirchi Peanut",
     category: "Peanuts",
     price: 140,
-    image: "/products/default.jpg",
+    image: LalMirchiPeanut,
     shortDescription:
     "Crunchy peanuts coated with bold red chilli and aromatic spices for a spicy snack experience.",
     description:
@@ -520,7 +568,7 @@ export const products = [
     name: "Bold Lal Mirchi Peanut",
     category: "Peanuts",
     price: 140,
-    image: "/products/default.jpg",
+    // image: BoldLalMirchiPeanut,
     shortDescription:
     "Extra-hot chilli-coated peanuts crafted for those who love intense spice.",
     description:
@@ -533,7 +581,7 @@ export const products = [
     name: "Salted Peanut",
     category: "Peanuts",
     price: 140,
-    image: "/products/default.jpg",
+    image: SaltedPeanut,
     shortDescription:
     "Classic roasted and salted peanuts with a simple, crunchy taste for everyday snacking.",
     description:
@@ -548,7 +596,7 @@ export const products = [
     name: "Hing Chana Dal",
     category: "Daal",
     price: 140,
-    image: "/products/default.jpg",
+    image: HingChanaDal,
     shortDescription:
     "Crispy chana dal seasoned with hing for a rich aroma and authentic flavour.",
     description:
@@ -561,7 +609,7 @@ export const products = [
     name: "Moong Dal",
     category: "Daal",
     price: 140,
-    image: "/products/default.jpg",
+    image: MoongDal,
     shortDescription:
     "Lightly salted crispy moong dal offering a simple, wholesome, and crunchy snack.",
     description:
@@ -574,7 +622,7 @@ export const products = [
     name: "Daal Moth",
     category: "Daal",
     price: 140,
-    image: "/products/default.jpg",
+    image: DaalMoth,
     shortDescription:
     "A crunchy blend of masur dal and plain sev with a delicious sweet and tangy flavour.",
     description:
@@ -587,7 +635,7 @@ export const products = [
     name: "Pudina Chana Dal",
     category: "Daal",
     price: 140,
-    image: "/products/default.jpg",
+    image: PudinaChanaDal,
     shortDescription:
     "Crunchy chana dal flavoured with refreshing mint and mild green chilli seasoning.",
     description:
@@ -602,7 +650,7 @@ export const products = [
     name: "Masala Papdi",
     category: "Papdi",
     price: 140,
-    image: "/products/default.jpg",
+    image: MasalaPapdi,
     shortDescription:
     "Crispy besan papdi seasoned with hing and ajwain for an authentic spicy flavour.",
     description:
@@ -615,7 +663,7 @@ export const products = [
     name: "Fikki Papdi",
     category: "Papdi",
     price: 140,
-    image: "/products/default.jpg",
+    image: FikkiPapdi,
     shortDescription:
     "Light and crispy plain papdi with a mild flavour and satisfying crunch.",
     description:

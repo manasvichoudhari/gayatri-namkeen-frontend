@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-
+import ScrollTop from "./components/ScrollTop";
 // =========== user pages ===========
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -37,6 +37,7 @@ function App() {
   return (
     <>
       <Toaster position="top-right" />
+      <ScrollTop />
 
       <Routes>
 

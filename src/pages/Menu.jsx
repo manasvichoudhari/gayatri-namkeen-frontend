@@ -58,11 +58,13 @@ const Menu = () => {
       : true;
 
     // category filter (checks both if item has a category prop, or if it exists in the categories map)
-    const matchCategory =
-      searchTerm.length > 0
-        ? true
-        : item.category === selectedCategory ||
-        (categories[selectedCategory] && categories[selectedCategory].includes(item.name));
+    const matchCategory = selectedItem
+  ? true
+  : searchTerm.length > 0
+    ? true
+    : item.category === selectedCategory ||
+      (categories[selectedCategory] &&
+        categories[selectedCategory].includes(item.name));
 
     return matchSelected && matchSearch && matchCategory;
   });
@@ -108,7 +110,7 @@ const Menu = () => {
   const handleBuyNow = (item) => {
     const user = JSON.parse(localStorage.getItem("user") || "null");
 
-    if (!user.token) {
+    if (!user?.token) {
       toast.error("Please login first");
       navigate("/login");
       return;
