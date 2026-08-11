@@ -8,7 +8,7 @@ import pohaSev from "../assets/images/poha.png";
 // import mediumSev from "../assets/images/ujjaini sev.png";
 import AlooBhujia from "../assets/images/alu bhujia.png";
 import MarwadiSev from "../assets/images/marwadi sev.png";
-import fikkiSev from "../assets/images/Fikki sev.png";
+import fikkiSev from "../assets/images/Fikki Sev.png";
 import TejHingMixture from "../assets/images/Tej Hing Mixture.png";
 import KhattaMithaMixture from "../assets/images/Khatta Mitha Mixture.png";
 // import PohaChivda from "../assets/images/ujjaini sev.png";
