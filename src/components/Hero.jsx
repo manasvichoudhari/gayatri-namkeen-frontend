@@ -2,10 +2,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // Images
@@ -32,110 +31,168 @@ const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full overflow-hidden bg-[#fff8ef]">
+    <section className="relative w-full overflow-hidden">
+
+      {/* =========================
+          BACKGROUND IMAGE CAROUSEL
+      ========================= */}
+
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        navigation
+        modules={[Pagination, Autoplay]}
         pagination={{
           clickable: true,
         }}
         autoplay={{
-          delay: 4000,
+          delay: 4500,
           disableOnInteraction: false,
         }}
         loop={true}
-        speed={700}
+        speed={800}
         allowTouchMove={true}
         grabCursor={true}
         className="hero-swiper w-full"
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <div className="relative w-full h-[300px] sm:h-[400px] md:h-[480px] lg:h-[550px]">
-
-              {/* Banner Image */}
-              <img
-                src={banner.image}
-                alt="Gayatri Namkeen"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-
-              {/* ONLY FIRST BANNER BUTTONS */}
-              {banner.id === 1 && (
-                <div
-                  className="
-                    absolute
-                    left-[6%]
-                    bottom-[12%]
-                    z-20
-                    flex
-                    flex-col
-                    items-start
-                    gap-3
-                    sm:gap-4
-                  "
-                >
-                  {/* EXPLORE MORE */}
-                  <button
-                    onClick={() => navigate("/about")}
-                    className="
-                    bg-[#8B4513]
-                    hover:bg-[#6F350F]
-                    text-white
-                      font-bold
-                      text-xs
-                      sm:text-sm
-                      lg:text-base
-                      px-5
-                      sm:px-7
-                      lg:px-10
-                      py-2
-                      sm:py-2.5
-                      lg:py-3
-                      rounded-full
-                      shadow-lg
-                      transition-all
-                      duration-300
-                      hover:scale-105
-                      active:scale-95
-                      whitespace-nowrap
-                    "
-                  >
-                    EXPLORE MORE
-                  </button>
-
-                  {/* SHOP NOW */}
-                  <button
-                    onClick={() => navigate("/menu")}
-                    className="
-  text-white
-  bg-[#8B4513]
-  font-bold
-  rounded-full
-  text-xs
-  py-2
-  px-5
-  hover:bg-[#6F350F]
-  sm:text-sm
-  hover:scale-105
-  lg:text-base
-  tracking-[0.25em]
-  
-  drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
-  transition
-  uppercase
-"
-                  >
-                    SHOP NOW
-                  </button>
-                </div>
-              )}
-            </div>
+            <div
+              className="
+                relative
+                w-full
+                aspect-[16/7]
+                min-h-[260px]
+                sm:min-h-[320px]
+                md:min-h-[400px]
+                lg:min-h-[500px]
+                bg-center
+                bg-no-repeat
+              "
+              style={{
+                backgroundImage: `url("${banner.image}")`,
+                backgroundSize: "100% 100%",
+              }}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
 
-      
+      {/* =========================
+          HERO BUTTONS
+          ALWAYS VISIBLE
+      ========================= */}
+
+      <div
+        className="
+          absolute
+          left-[7%]
+          bottom-[7%]
+          z-20
+          flex
+          items-center
+          gap-3
+          sm:gap-4
+        "
+      >
+
+        {/* SHOP NOW */}
+        <button
+          onClick={() => navigate("/menu")}
+          className="
+            px-5
+            sm:px-7
+            lg:px-9
+            py-2.5
+            sm:py-3
+            rounded-full
+            bg-[#F5C451]
+            text-[#5B2B12]
+            font-semibold
+            text-xs
+            sm:text-sm
+            lg:text-base
+            shadow-lg
+            transition-all
+            duration-300
+            hover:bg-[#FFD66B]
+            hover:-translate-y-1
+            hover:shadow-xl
+            active:scale-95
+            whitespace-nowrap
+          "
+        >
+          SHOP NOW
+        </button>
+
+        {/* EXPLORE MORE */}
+        <button
+          onClick={() => navigate("/about")}
+          className="
+            px-5
+            sm:px-7
+            lg:px-9
+            py-2.5
+            sm:py-3
+            rounded-full
+            bg-[#7A3E16]
+            text-white
+            font-semibold
+            text-xs
+            sm:text-sm
+            lg:text-base
+            shadow-lg
+            transition-all
+            duration-300
+            hover:bg-[#5F2F10]
+            hover:-translate-y-1
+            hover:shadow-xl
+            active:scale-95
+            whitespace-nowrap
+          "
+        >
+          EXPLORE MORE
+        </button>
+
+      </div>
+
+      {/* =========================
+          PAGINATION
+      ========================= */}
+
+      <style>{`
+        .hero-swiper .swiper-pagination {
+          bottom: 12px !important;
+        }
+
+        .hero-swiper .swiper-pagination-bullet {
+          width: 7px;
+          height: 7px;
+          background: white;
+          opacity: 0.7;
+          transition: all 0.3s ease;
+        }
+
+        .hero-swiper .swiper-pagination-bullet-active {
+          width: 22px;
+          border-radius: 20px;
+          background: #F5C451;
+          opacity: 1;
+        }
+
+        @media (max-width: 640px) {
+          .hero-swiper .swiper-pagination {
+            bottom: 6px !important;
+          }
+
+          .hero-swiper .swiper-pagination-bullet {
+            width: 6px;
+            height: 6px;
+          }
+
+          .hero-swiper .swiper-pagination-bullet-active {
+            width: 18px;
+          }
+        }
+      `}</style>
+
     </section>
   );
 };
