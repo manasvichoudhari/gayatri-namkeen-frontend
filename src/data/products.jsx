@@ -35,7 +35,7 @@ import LalMirchiBoondi from "../assets/images/lal mirchi boondi.png";
 // import FikkiBoondi from "../assets/images/ujjaini sev.png";
 import TastyPeanut from "../assets/images/tasty.png";
 import KaliMirchiPeanut from "../assets/images/Kali Mirch Peanut.png";
-import LalMirchiPeanut from "../assets/images/lal Mirch Peanut.png";
+import LalMirchiPeanut from "../assets/images/Lal Mirch Peanut.png";
 // import BoldLalMirchiPeanut from "../assets/images/ujjaini sev.png";
 import SaltedPeanut from "../assets/images/Salted Peanut.png";
 import HingChanaDal from "../assets/images/Hing Chana Dal.png";
